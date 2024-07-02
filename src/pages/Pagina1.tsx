@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Pagina1() {
+export default function Pagina1 = ()=> {
   return (
     <>
       <h1>Bienvenido</h1>
