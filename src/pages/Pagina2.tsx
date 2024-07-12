@@ -1,45 +1,68 @@
-import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-export const Pagina2 = () => {
-const [nombre, setnombre] = useState(Joselito)
-const [apellido, setapellido] = useState(Vaca)
-const[eNombre,setENombre] = useState('')
-const validarNombre 0 (valor:string)=>{
-  if(valor.length<4){
-    setENombre('debes ingresar 4 caracteres')
-  }else{
-    setENnombre('')
-  }
-  setNombre(valor)
-}
+import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
+const Pagina2 = () => {
+  const [numero1, setNumero1] = useState(0);
+  const [numero2, setNumero2] = useState(0);
+  const [resultado, setResultado] = useState(0);
+
+  const actualizarN1 = (valor: number) => {
+    setNumero1(valor);
+  };
+
+  const actualizarN2 = (valor: number) => {
+    setNumero2(valor);
+  };
+
+  const sumar = () => {
+    const s = numero1 + numero2;
+    setResultado(s);
+  };
+
+useEffect(() => {
+  sumar();
+}, [numero1, numero2]);
 
   return (
     <>
-    <h1>Registro</h1>
-    <h2>Bienvenido {nombre} {apellido}</h2>
-    <Form>
-      <Form.Group>  
-        <Form.Label>Nombre: </Form.Label>
-        <Form.Control
-         type='text' 
-         placeholder='Ingrese su nombre'/>
-         onChange={(e)=> vaidarNombre(e.currentTarget.value)}
-      </Form.Group>
-      <form.text>
-        {eNombre}
-      </form.text>
-      <Form.Group>  
-        <Form.Label>Apellido: </Form.Label>
-        <Form.Control 
-        type='text' 
-        placeholder='Ingrese su apellido'/>
-        onChange={(e)=> setApellido(e.currentTarget.value)}
+      <Form>
+        <Form.Group>
+          <Form.Label>numero 1</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="ingresar numero 1"
+            onChange={(n1) => {
+              actualizarN1(parseInt(n1.currentTarget.value));
+            }}
+          />
+        </Form.Group>
 
-      </Form.Group>  
+        <Form.Group>
+          <Form.Label>numero 2</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="ingresar numero 2"
+            onChange={(n2) => {
+              actualizarN2(parseInt(n2.currentTarget.value));
+            }}
+          ></Form.Control>
+        </Form.Group>
+        <Button variant="primary" onClick={sumar}>
+          Sumar
+        </Button>
+        <br></br>
+        <Form.Group>
+          <Form.Label>resultado</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="resultado"
+            value={resultado}
+          />
+        </Form.Group>
+      </Form>
+    </>
+  );
+};
 
-    </Frorm>
-  
-  )
-}
-export default Pagina2
+export default Pagina2;
